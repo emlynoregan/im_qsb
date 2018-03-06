@@ -7,15 +7,15 @@ except ImportError:
     from distutils.core import setup
 
 dist = setup(
-    name='im_util',
-    version='0.1.4',
-    description='Utilities for the im package library; used by most of them',
+    name='im_qsb',
+    version='0.1.0',
+    description='This package provides methods for safely describing App Engine Search API Query as a json structure (a QSpec).',
     author='Emlyn O\'Regan',
     author_email='emlynoregan@gmail.com',
-    url='https://github.com/emlynoregan/im_util',
+    url='https://github.com/emlynoregan/im_qsb',
     license='../LICENSE.txt',
-    packages=['im_util'],
-    install_requires=['cloudpickle'],
+    packages=['im_qsb'],
+    install_requires=[],
     long_description=open('../README.md').read(),
     classifiers=[
         'Development Status :: 3 - Alpha',
