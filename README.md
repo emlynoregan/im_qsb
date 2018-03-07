@@ -5,6 +5,8 @@ You can construct a QSpec manually or by using the qsb_X methods
 
 You can render any QSpec to a Search API Query String using render_query_string()
 
+The github repo is [here](https://github.com/emlynoregan/im_qsb).
+
 [![Build Status](https://travis-ci.org/emlynoregan/im_qsb.svg?branch=master)](https://travis-ci.org/emlynoregan/im_qsb)
 
 ## Install 

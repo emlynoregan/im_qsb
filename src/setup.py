@@ -8,7 +8,7 @@ except ImportError:
 
 dist = setup(
     name='im_qsb',
-    version='0.1.0',
+    version='0.1.1',
     description='This package provides methods for safely describing App Engine Search API Query as a json structure (a QSpec).',
     author='Emlyn O\'Regan',
     author_email='emlynoregan@gmail.com',

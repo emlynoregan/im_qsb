@@ -50,7 +50,7 @@ def render_query_string(aQSpec):
     elif is_distance_QSpec(aQSpec):
         retval = _render_distance_QSpec(aQSpec)
     else:
-        raise ValueError("Unknown QSpec")
+        raise ValueError("Unknown QSpec: %s" % aQSpec)
     return retval
 
 def _render_string_QSpec(aStringQSpec):
