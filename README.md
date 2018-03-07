@@ -60,74 +60,74 @@ A QSpec is a json structure for describing a Search Engine API query, which is c
 	construct method: qsb_eq(<field QSpec>, <QSpec>)
 
 ## inequality QSpec
-{ "op": "!=", "field": <field QSpec>, "value": <QSpec> }: an inequality comparison, eg: {"op":"!=", "field": {"fieldname":"name"}, "value": "Frodo"} => u'NOT (name:"Frodo")'
-
-Construct:
-	qsb_neq(<field QSpec>, <QSpec>)
+	qspec format: qspec format: { "op": "!=", "field": <field QSpec>, "value": <QSpec> }
+	renders to: an inequality comparison
+	example: {"op":"!=", "field": {"fieldname":"name"}, "value": "Frodo"} => u'NOT (name:"Frodo")'
+	construct method: qsb_neq(<field QSpec>, <QSpec>)
 
 ## paren QSpec
-{ "op": "paren", "arg": <QSpec> }: wraps parens around a QSpec, eg: {"op": "paren", "arg": 47} => u'(47)'
-
-Construct:
-	qsb_paren(<QSpec>)
+	qspec format: { "op": "paren", "arg": <QSpec> }
+	renders to: wraps parens around a QSpec
+	example: {"op": "paren", "arg": 47} => u'(47)'
+	construct method: qsb_paren(<QSpec>)
 
 ## stem QSpec
-{ "op": "stem", "arg": <QSpec> }: adds a stem to a QSpec, eg: {"op": "stem", "arg": "Harry"} => u'~"Harry"'
-
-Construct:
-	qsb_stem(<QSpec>)
+	qspec format: { "op": "stem", "arg": <QSpec> }
+	renders to: adds a stem to a QSpec
+	example: {"op": "stem", "arg": "Harry"} => u'~"Harry"'
+	construct method: qsb_stem(<QSpec>)
 
 ## less-than QSpec
-{ "op": "<", "field": <field QSpec>, "value": <QSpec> }: a less-than comparison, eg: {"op":"<", "field": {"fieldname":"amount"}, "value": 43} => u'amount<43'
-
-Construct:
-	qsb_lt(<field QSpec>, <QSpec>)
+	qspec format: { "op": "<", "field": <field QSpec>, "value": <QSpec> }
+	renders to: a less-than comparison
+	example: {"op":"<", "field": {"fieldname":"amount"}, "value": 43} => u'amount<43'
+	construct method: qsb_lt(<field QSpec>, <QSpec>)
 
 ## less-than-or-equal-to QSpec
-{ "op": "<=", "field": <field QSpec>, "value": <QSpec> }: a less-than-or-equal-to comparison, eg: {"op":"<=", "field": {"fieldname":"amount"}, "value": 47.2} => u'amount<=47.2'
-
-Construct:
-	qsb_le(<field QSpec>, <QSpec>)
+	qspec format: { "op": "<=", "field": <field QSpec>, "value": <QSpec> }
+	renders to: a less-than-or-equal-to comparison
+	example: {"op":"<=", "field": {"fieldname":"amount"}, "value": 47.2} => u'amount<=47.2'
+	construct method: qsb_le(<field QSpec>, <QSpec>)
 
 ## greater-than QSpec
-{ "op": ">", "field": <field QSpec>, "value": <QSpec> }: a greater-than comparison, eg: {"op":">", "field": {"fieldname":"amount"}, "value": -1} => u'amount>-1'
-
-Construct:
-	qsb_gt(<field QSpec>, <QSpec>)
+	qspec format: { "op": ">", "field": <field QSpec>, "value": <QSpec> }
+	renders to: a greater-than comparison
+	example: {"op":">", "field": {"fieldname":"amount"}, "value": -1} => u'amount>-1'
+	construct method: qsb_gt(<field QSpec>, <QSpec>)
 
 ## greater-than-or-equal-to QSpec
-{ "op": ">=", "field": <field QSpec>, "value": <QSpec> }: a greater-than-or-equal-to comparison, eg: {"op":">=", "field": {"fieldname":"amount"}, "value": 0} => u'amount>=0'
-
-Construct:
-	qsb_ge(<field QSpec>, <QSpec>)
+	qspec format: { "op": ">=", "field": <field QSpec>, "value": <QSpec> }
+	renders to: a greater-than-or-equal-to comparison
+	example: {"op":">=", "field": {"fieldname":"amount"}, "value": 0} => u'amount>=0'
+	construct method: qsb_ge(<field QSpec>, <QSpec>)
 
 ## and QSpec
-{ "op": "AND", args: [<list of QSpec>] }: a space separated list of QSpecs, which is a valid way to express AND relationships. eg: {"op":"AND", "args": ["X", "Y", "Z"] => u'"X" "Y" "Z"'
-
-Construct:
-	qsb_and(<QSpec>, ...)
+	qspec format: { "op": "AND", args: [<list of QSpec>] }
+	renders to: a space separated list of QSpecs, which is a valid way to express AND relationships.
+	example: {"op":"AND", "args": ["X", "Y", "Z"] => u'"X" "Y" "Z"'
+	construct method: qsb_and(<QSpec>, ...)
 
 ## or QSpec
-{ "op": "OR", args: [<list of QSpec>] }: an OR separated list of QSpecs. eg: {"op":"OR", "args": ["noodle", {"quoted": "poodle"}]} => u'"noodle" OR poodle'
-
-Construct:
-	qsb_or(<QSpec>, ...)
+	qspec format: { "op": "OR", args: [<list of QSpec>] }
+	renders to: an OR separated list of QSpecs.
+	example: {"op":"OR", "args": ["noodle", {"quoted": "poodle"}]} => u'"noodle" OR poodle'
+	construct method: qsb_or(<QSpec>, ...)
 
 ## not QSpec
-{ "op": "NOT", arg: <QSpec> }: a negation of a QSpecs. eg: {"op":"NOT", "args":"noodle"} => u'NOT "noodle"'
-
-Construct:
-	qsb_not(<QSpec>)
+	qspec format: { "op": "NOT", arg: <QSpec> }
+	renders to: a negation of a QSpecs.
+	example: {"op":"NOT", "args":"noodle"} => u'NOT "noodle"'
+	construct method: qsb_not(<QSpec>)
 
 ## geopoint QSpec
-{ "op": "geopoint", left: <number QSpec>, right: <number QSpec> }: a geopoint specification, eg: {"op":"geopoint", "left": 12, "right": 42.7} => u'geopoint(12,42.7)'
-
-Construct:
-	qsb_geopoint(<number QSpec>, <number QSpec>)
+	qspec format: { "op": "geopoint", left: <number QSpec>, right: <number QSpec> }
+	renders to: a geopoint specification
+	example: {"op":"geopoint", "left": 12, "right": 42.7} => u'geopoint(12,42.7)'
+	construct method: qsb_geopoint(<number QSpec>, <number QSpec>)
 
 ## distance QSpec
-{ "op": "distance", left: <QSpec>, right: <QSpec> }: a distance specification, eg: {"op": "distance", "left": {"op":"geopoint", "left": 12, "right": 42.7}, "right": {"fieldname": "home"}} => u'distance(geopoint(12,42.7),home)'
-
-Construct:
-	qsb_distance(<QSpec>, <QSpec>)
-
+	qspec format: { "op": "distance", left: <QSpec>, right: <QSpec> }
+	renders to: a distance specification
+	example: {"op": "distance", "left": {"op":"geopoint", "left": 12, "right": 42.7}, "right": {"fieldname": "home"}} 
+		=> u'distance(geopoint(12,42.7),home)'
+	construct method: qsb_distance(<QSpec>, <QSpec>)
