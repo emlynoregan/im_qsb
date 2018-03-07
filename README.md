@@ -24,40 +24,40 @@ Or add it to your requirements.txt. You'll also need to set up vendoring, see [a
 A QSpec is a json structure for describing a Search Engine API query, which is converted to a querystring using the following rules:
 
 ## string QSpec:
-<string or unicode> => a quote delimited and escaped unicode string value, eg: 'Fred "Freddy" Frog' => u'"Fred \"Freddy\" Frog"'
-
-Construct:
-	qsb_string(<string or unicode>)
+	qspec format: <string or unicode>
+	renders to: quote delimited and escaped unicode string value 
+	example: 'Fred "Freddy" Frog' => u'"Fred \"Freddy\" Frog"'
+	construct method: qsb_string(<string or unicode>)
 
 ## number QSpec:
-<number>: a numeric value, eg: 47 => u'47'
-
-Construct:
-	qsb_number(<number>)
+	qspec format: <number>
+	renders to: a numeric value
+	example: 47 => u'47'
+	construct method: qsb_number(<number>)
 
 ## boolean QSpec:
-<boolean>: '1' or '0', eg: True => '1', 
-
-Construct:
-	qsb_boolean(<boolean>)
+	qspec format: <boolean>
+	renders to: '1' or '0'
+	example: True => '1'
+	construct method: qsb_boolean(<boolean>)
 
 ## unquoted QSpec:
-{ "unquoted": <string or unicode> }: an escaped but not quote delimited unicode string value, eg: { "unquoted": 'Fred "Freddy" Frog' } => u'Fred \"Freddy\" Frog'
-
-Construct:
-	qsb_unquoted(<string or unicode>)
+	qspec format: { "unquoted": <string or unicode> }
+	renders to: an escaped but not quote delimited unicode string value
+	example: { "unquoted": 'Fred "Freddy" Frog' } => u'Fred \"Freddy\" Frog'
+	construct method: qsb_unquoted(<string or unicode>)
 
 ## field QSpec:
-{ "fieldname": <string or unicode> }: a valid fieldname, with invalid characters replaced with "_", eg: 'first*name' => u'firse_name'
-
-Construct:
-	qsb_field(<string or unicode>)
+	qspec format: { "fieldname": <string or unicode> }
+	renders to: a valid fieldname, with invalid characters replaced with "_"
+	example: 'first*name' => u'firse_name'
+	construct method: qsb_field(<string or unicode>)
 
 ## equality QSpec
-{ "op": "=", "field": <field QSpec>, "value": <QSpec> }: an equality comparison, eg: {"op":"=", "field": {"fieldname":"name"}, "value": "Frodo"} => u'name:"Frodo"'
-
-Construct:
-	qsb_eq(<field QSpec>, <QSpec>)
+	qspec format: { "op": "=", "field": <field QSpec>, "value": <QSpec> }
+	renders to: an equality comparison
+	example: {"op":"=", "field": {"fieldname":"name"}, "value": "Frodo"} => u'name:"Frodo"'
+	construct method: qsb_eq(<field QSpec>, <QSpec>)
 
 ## inequality QSpec
 { "op": "!=", "field": <field QSpec>, "value": <QSpec> }: an inequality comparison, eg: {"op":"!=", "field": {"fieldname":"name"}, "value": "Frodo"} => u'NOT (name:"Frodo")'
