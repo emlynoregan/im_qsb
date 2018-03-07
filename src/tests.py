@@ -228,3 +228,5 @@ class Tests(unittest.TestCase):
         result = render_query_string(qspec)
         
         self.assertEqual(result, u'distance(home_base,geopoint(34.5,22))>47')
+
+        
