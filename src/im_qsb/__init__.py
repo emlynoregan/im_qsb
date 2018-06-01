@@ -15,6 +15,8 @@ def render_query_string(aQSpec):
     retval = None
     if is_string_QSpec(aQSpec):
         retval = _render_string_QSpec(aQSpec)
+    elif is_rendered_QSpec(aQSpec):
+        retval = _render_rendered_QSpec(aQSpec)
     elif is_unquoted_QSpec(aQSpec):
         retval = _render_unquoted_QSpec(aQSpec)
     elif is_number_QSpec(aQSpec):
@@ -107,6 +109,9 @@ def _render_geopoint_QSpec(aQSpec):
 
 def _render_distance_QSpec(aQSpec):
     return u"distance(%s,%s)" % (render_query_string(aQSpec.get("left")), render_query_string(aQSpec.get("right")))
+
+def _render_rendered_QSpec(aQSpec):
+    return aQSpec.get("rendered")
 
 #################################################################################
 
@@ -232,6 +237,11 @@ def qsb_distance(aQSpec1, aQSpec2):
         "right": aQSpec2
     }
 
+def qsb_rendered(aQuerystring):
+    return {
+        "rendered": aQuerystring
+    }
+
         
 #####################################################
 
@@ -332,6 +342,12 @@ def is_gt_QSpec(aQSpec, raises=False):
 
 def is_ge_QSpec(aQSpec, raises=False):
     return _is_comparison_QSpec(">=", "Greater-than-or-equal-to", aQSpec, raises)
+
+def is_rendered_QSpec(aQSpec, raises=False):
+    retval = isdict(aQSpec) and isstring(aQSpec.get("rendered"))
+    if not retval and raises:
+        raise ValueError("RENDERED QSpec expected (%s, %s)" % (aQSpec, type(aQSpec)))
+    return retval
 
 ##########################################################################
 

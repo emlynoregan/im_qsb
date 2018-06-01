@@ -128,6 +128,13 @@ Construct:
 ## distance QSpec
 { "op": "distance", left: <QSpec>, right: <QSpec> }: a distance specification, eg: {"op": "distance", "left": {"op":"geopoint", "left": 12, "right": 42.7}, "right": {"fieldname": "home"}} => u'distance(geopoint(12,42.7),home)'
 
+
 Construct:
 	qsb_distance(<QSpec>, <QSpec>)
+
+## rendered QSpec
+{ "rendered": <QSpec> }: allows you to turn a pre-rendered querystring into a QSpec, eg: {"rendered": "userid: 1234"} => u'userid: 1234'
+
+Construct:
+	qsb_rendered(<Querystring>)
 
